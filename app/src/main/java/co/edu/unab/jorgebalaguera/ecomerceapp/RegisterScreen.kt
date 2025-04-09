@@ -21,6 +21,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,10 +30,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import co.edu.unab.jorgebalaguera.ecomerceapp.ui.theme.EcomerceAppTheme
 
 @Composable
-fun RegisterScreen() {
+fun RegisterScreen(navController: NavController) {
     Scaffold { innerPadding ->
         Column(
             modifier = Modifier
@@ -138,6 +140,11 @@ fun RegisterScreen() {
                     fontSize = 16.sp
                 )
             }
+            TextButton(onClick = {
+                navController.navigate("login")
+            }) {
+                Text(text = "ya tienes cuenta? inicia secion", color = Color(0xFFFF9900))
+            }
 
         }
     }
@@ -147,7 +154,7 @@ fun RegisterScreen() {
 @Composable
 fun RegisterScreenPreview() {
     EcomerceAppTheme {
-        RegisterScreen()
+//        RegisterScreen()
     }
 
 }

@@ -11,6 +11,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import co.edu.unab.jorgebalaguera.ecomerceapp.ui.theme.EcomerceAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,7 +23,21 @@ class MainActivity : ComponentActivity() {
         setContent {
             EcomerceAppTheme {
 
-                LoginScreen()
+                val mynavController = rememberNavController()
+                val mystartDestination = "Login"
+
+                NavHost(
+                    navController = mynavController,
+                    startDestination = mystartDestination,
+                    modifier = Modifier.fillMaxSize()
+                ){
+                    composable("login") {
+                        LoginScreen(mynavController)
+                    }
+                    composable("Register") {
+                        RegisterScreen(mynavController)
+                    }
+                }
 
             }
         }
