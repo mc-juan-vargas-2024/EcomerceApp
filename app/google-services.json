@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "962939272974",
+    "project_id": "juanlogin-525b8",
+    "storage_bucket": "juanlogin-525b8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962939272974:android:8584d31ddafe7977f1215f",
+        "android_client_info": {
+          "package_name": "co.edu.unab.jorgebalaguera.ecomerceapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGmRmXXkXrNhUjdE0LaNhd_z--dbiaiOg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

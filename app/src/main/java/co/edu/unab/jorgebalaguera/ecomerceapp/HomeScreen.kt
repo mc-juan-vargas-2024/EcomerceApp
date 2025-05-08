@@ -35,13 +35,25 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import co.edu.unab.jorgebalaguera.ecomerceapp.ui.theme.EcomerceAppTheme
 import coil3.compose.rememberAsyncImagePainter
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import java.net.URL
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavController) {
+    val auth = Firebase.auth
+    var user = auth.currentUser
+    var correo = "No existe usuario"
+    if (user != null) {
+        correo = user.email.toString()
+    } else {
+        correo = "No existe usuario"
+
+    }
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     Scaffold(
         topBar = {
@@ -52,7 +64,7 @@ fun HomeScreen() {
                 ),
                 title = {
                     Text(
-                        "bienvenido",
+                        correo,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -66,7 +78,12 @@ fun HomeScreen() {
                     }
                 },
                 actions = {
-                    IconButton(onClick = { /* do something */ }) {
+                    IconButton(onClick = {
+                        auth.signOut()
+                        navController.navigate("LoginScreen") {
+                            popUpTo(0)
+                        }
+                    }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ExitToApp,
                             contentDescription = "Localized description"
@@ -76,6 +93,7 @@ fun HomeScreen() {
                 scrollBehavior = scrollBehavior
             )
         },
+
 
 
         ) { innerPadding ->
@@ -123,10 +141,3 @@ fun cardPromo(url: String) {
     }
 }
 
-@Preview
-@Composable
-fun HomeScreenPreview() {
-    EcomerceAppTheme {
-        HomeScreen()
-    }
-}
